@@ -149,53 +149,52 @@ uploadResizeControlsValue.setAttribute('value', '100%');
 uploadResizeValueIncrease.addEventListener('click', resizeIncrease);
 uploadResizeValueDecrease.addEventListener('click', resizeDecrease);
 
-/* var uploadEffectLevelPin = document.querySelector('upload-effect-level-pin'); не работающая часть с обработкой фотографии фильтрами
+var uploadEffectLevelPin = document.querySelector('upload-effect-level-pin');
 var uploadEffectChrome = document.querySelector('#upload-effect-chrome');
 var uploadEffectSepia = document.querySelector('#upload-effect-sepia');
 var uploadEffectMarvin = document.querySelector('#upload-effect-marvin');
 var uploadEffectPhobos = document.querySelector('#upload-effect-phobos');
 var uploadEffectHeat = document.querySelector('#upload-effect-heat');
 var effectValue = document.querySelector('.upload-effect-level-value');
-var effectImagePreview = document.querySelector('.effect-image-preview');
 var uploadEffectLevelValue = document.querySelector('.upload-effect-level-value');
-var filterChrome
+var uploadEffectControls = document.querySelector('.upload-effect-controls');
 
- var uploadLevelPin = function (evt) {
-var effect = evt.getAttribute('id');
-pinValueElement = document.getElementById(effect);
-value = pinValueElement.getAttribute('value');
-if (value == chrome) {
-  effectImagePreview.classList.add('effect-chrome');
-  uploadEffectLevelValue.setAttribute('filter', grayscale(1)); 
-}
-else
-{
-  if (value == sepia) {
-    effectImagePreview.classList.add('effect-sepia');
-    uploadEffectLevelValue.setAttribute('filter', sepia(1)); 
+var uploadLevelPin = function (evt) {
+  var effect = evt.getAttribute('id');
+  pinValueElement = document.getElementById(effect);
+  value = pinValueElement.getAttribute('value');
+  if (value == chrome) {
+    effectImagePreview.classList.add('effect-chrome');
+    uploadEffectLevelValue.setAttribute('style', 'filter: grayscale(1)');
+  }
+  else
+  {
+    if (value == sepia) {
+      effectImagePreview.classList.add('effect-sepia');
+      uploadEffectLevelValue.setAttribute('style', 'filter: sepia(1)'); 
     }
     else {
       if (value == marvin) {
-    effectImagePreview.classList.add('effect-marvin');
-    uploadEffectLevelValue.setAttribute('filter', invert(100%)); 
+        effectImagePreview.classList.add('effect-marvin');
+        uploadEffectLevelValue.setAttribute('style', 'filter: invert(100%)'); 
       }
       else {
         if (value == phobos) {
-    effectImagePreview.classList.add('effect-phobos');
-    uploadEffectLevelValue.setAttribute('filter', blur(3, px)); 
+          effectImagePreview.classList.add('effect-phobos');
+          uploadEffectLevelValue.setAttribute('style', 'filter: blur(3, px)'); 
         }
         else {
           if (value == heat) {
-    effectImagePreview.classList.add('effect-heat');
-    uploadEffectLevelValue.setAttribute('filter', brightness(3));
+            effectImagePreview.classList.add('effect-heat');
+            uploadEffectLevelValue.setAttribute('style', 'filter: brightness(3)');
           }
           else {
-    uploadEffectLevelValue.setAttribute('filter', null);
+            uploadEffectLevelValue.setAttribute('style', 'filter: null');
           }
         }
       } 
     }
-}
+  }
 };
 
- uploadEffectLevelPin.addEventListener('mouseup', uploadLevelPin); */
+uploadEffectLevelPin.addEventListener('mouseup', uploadLevelPin);
