@@ -149,7 +149,7 @@ uploadResizeControlsValue.setAttribute('value', '100%');
 uploadResizeValueIncrease.addEventListener('click', resizeIncrease);
 uploadResizeValueDecrease.addEventListener('click', resizeDecrease);
 
-var uploadEffectLevelPin = document.querySelector('upload-effect-level-pin');
+var uploadEffectLevelPin = document.querySelector('.upload-effect-level-pin');
 var uploadEffectChrome = document.querySelector('#upload-effect-chrome');
 var uploadEffectSepia = document.querySelector('#upload-effect-sepia');
 var uploadEffectMarvin = document.querySelector('#upload-effect-marvin');
@@ -197,4 +197,4 @@ var uploadLevelPin = function (evt) {
   }
 };
 
-uploadEffectLevelPin.addEventListener('mouseup', uploadLevelPin);
+uploadEffectControls.addEventListener('mouseup', uploadLevelPin);
