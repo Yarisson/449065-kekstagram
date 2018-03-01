@@ -162,12 +162,12 @@ var uploadLevelPin = function (evt) {
   else if (value === 'sepia') {
     effectImagePreview.classList.remove('effect-heat', 'effect-phobos', 'effect-marvin', 'effect-chrome', 'effect-none');
     effectImagePreview.classList.add('effect-sepia');
-    uploadEffectLevelValue.setAttribute('style', 'filter: sepia(1)'); 
+    uploadEffectLevelValue.setAttribute('style', 'filter: sepia(1)');
   }
   else if (value === 'marvin') {
     effectImagePreview.classList.remove('effect-heat', 'effect-phobos', 'effect-sepia', 'effect-chrome', 'effect-none');
     effectImagePreview.classList.add('effect-marvin');
-    uploadEffectLevelValue.setAttribute('style', 'filter: invert(100%)'); 
+    uploadEffectLevelValue.setAttribute('style', 'filter: invert(100%)');
   }
   else if (value === 'phobos') {
     effectImagePreview.classList.remove('effect-heat', 'effect-marvin', 'effect-sepia', 'effect-chrome', 'effect-none');
@@ -183,7 +183,7 @@ var uploadLevelPin = function (evt) {
     effectImagePreview.classList.add('effect-none');
     effectImagePreview.classList.remove('effect-heat', 'effect-phobos', 'effect-marvin', 'effect-sepia', 'effect-chrome');
     uploadEffectLevelValue.setAttribute('style', 'filter: none');
-  }     
+  }
 };
 
 uploadEffectControls.addEventListener('mouseup', uploadLevelPin);
