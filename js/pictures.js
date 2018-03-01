@@ -160,36 +160,41 @@ var uploadEffectLevelValue = document.querySelector('.upload-effect-level-value'
 var uploadEffectControls = document.querySelector('.upload-effect-controls');
 
 var uploadLevelPin = function (evt) {
-  var effect = evt.getAttribute('id');
-  pinValueElement = document.getElementById(effect);
-  value = pinValueElement.getAttribute('value');
-  if (value == chrome) {
+var value = evt.target.parentElement.getAttribute('for').substring(14);
+  if (value === 'chrome') {
+    effectImagePreview.classList.remove('effect-heat', 'effect-phobos', 'effect-marvin', 'effect-sepia', 'effect-none');
     effectImagePreview.classList.add('effect-chrome');
     uploadEffectLevelValue.setAttribute('style', 'filter: grayscale(1)');
   }
   else
   {
-    if (value == sepia) {
+    if (value === 'sepia') {
+      effectImagePreview.classList.remove('effect-heat', 'effect-phobos', 'effect-marvin', 'effect-chrome', 'effect-none');
       effectImagePreview.classList.add('effect-sepia');
       uploadEffectLevelValue.setAttribute('style', 'filter: sepia(1)'); 
     }
     else {
-      if (value == marvin) {
+      if (value === 'marvin') {
+        effectImagePreview.classList.remove('effect-heat', 'effect-phobos', 'effect-sepia', 'effect-chrome', 'effect-none');
         effectImagePreview.classList.add('effect-marvin');
         uploadEffectLevelValue.setAttribute('style', 'filter: invert(100%)'); 
       }
       else {
-        if (value == phobos) {
+        if (value === 'phobos') {
+          effectImagePreview.classList.remove('effect-heat', 'effect-marvin', 'effect-sepia', 'effect-chrome', 'effect-none');
           effectImagePreview.classList.add('effect-phobos');
-          uploadEffectLevelValue.setAttribute('style', 'filter: blur(3, px)'); 
+          uploadEffectLevelValue.setAttribute('style', 'filter: blur(3, px)');
         }
         else {
-          if (value == heat) {
+          if (value === 'heat') {
+            effectImagePreview.classList.remove('effect-phobos', 'effect-marvin', 'effect-sepia', 'effect-chrome', 'effect-none');
             effectImagePreview.classList.add('effect-heat');
             uploadEffectLevelValue.setAttribute('style', 'filter: brightness(3)');
           }
           else {
-            uploadEffectLevelValue.setAttribute('style', 'filter: null');
+            effectImagePreview.classList.add('effect-none');
+            effectImagePreview.classList.remove('effect-heat', 'effect-phobos', 'effect-marvin', 'effect-sepia', 'effect-chrome');
+            uploadEffectLevelValue.setAttribute('style', 'filter: none');
           }
         }
       } 
