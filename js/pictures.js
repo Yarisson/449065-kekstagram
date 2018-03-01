@@ -149,57 +149,41 @@ uploadResizeControlsValue.setAttribute('value', '100%');
 uploadResizeValueIncrease.addEventListener('click', resizeIncrease);
 uploadResizeValueDecrease.addEventListener('click', resizeDecrease);
 
-var uploadEffectLevelPin = document.querySelector('.upload-effect-level-pin');
-var uploadEffectChrome = document.querySelector('#upload-effect-chrome');
-var uploadEffectSepia = document.querySelector('#upload-effect-sepia');
-var uploadEffectMarvin = document.querySelector('#upload-effect-marvin');
-var uploadEffectPhobos = document.querySelector('#upload-effect-phobos');
-var uploadEffectHeat = document.querySelector('#upload-effect-heat');
-var effectValue = document.querySelector('.upload-effect-level-value');
 var uploadEffectLevelValue = document.querySelector('.upload-effect-level-value');
 var uploadEffectControls = document.querySelector('.upload-effect-controls');
 
 var uploadLevelPin = function (evt) {
-var value = evt.target.parentElement.getAttribute('for').substring(14);
+  var value = evt.target.parentElement.getAttribute('for').substring(14);
   if (value === 'chrome') {
     effectImagePreview.classList.remove('effect-heat', 'effect-phobos', 'effect-marvin', 'effect-sepia', 'effect-none');
     effectImagePreview.classList.add('effect-chrome');
     uploadEffectLevelValue.setAttribute('style', 'filter: grayscale(1)');
   }
-  else
-  {
-    if (value === 'sepia') {
-      effectImagePreview.classList.remove('effect-heat', 'effect-phobos', 'effect-marvin', 'effect-chrome', 'effect-none');
-      effectImagePreview.classList.add('effect-sepia');
-      uploadEffectLevelValue.setAttribute('style', 'filter: sepia(1)'); 
-    }
-    else {
-      if (value === 'marvin') {
-        effectImagePreview.classList.remove('effect-heat', 'effect-phobos', 'effect-sepia', 'effect-chrome', 'effect-none');
-        effectImagePreview.classList.add('effect-marvin');
-        uploadEffectLevelValue.setAttribute('style', 'filter: invert(100%)'); 
-      }
-      else {
-        if (value === 'phobos') {
-          effectImagePreview.classList.remove('effect-heat', 'effect-marvin', 'effect-sepia', 'effect-chrome', 'effect-none');
-          effectImagePreview.classList.add('effect-phobos');
-          uploadEffectLevelValue.setAttribute('style', 'filter: blur(3, px)');
-        }
-        else {
-          if (value === 'heat') {
-            effectImagePreview.classList.remove('effect-phobos', 'effect-marvin', 'effect-sepia', 'effect-chrome', 'effect-none');
-            effectImagePreview.classList.add('effect-heat');
-            uploadEffectLevelValue.setAttribute('style', 'filter: brightness(3)');
-          }
-          else {
-            effectImagePreview.classList.add('effect-none');
-            effectImagePreview.classList.remove('effect-heat', 'effect-phobos', 'effect-marvin', 'effect-sepia', 'effect-chrome');
-            uploadEffectLevelValue.setAttribute('style', 'filter: none');
-          }
-        }
-      } 
-    }
+  else if (value === 'sepia') {
+    effectImagePreview.classList.remove('effect-heat', 'effect-phobos', 'effect-marvin', 'effect-chrome', 'effect-none');
+    effectImagePreview.classList.add('effect-sepia');
+    uploadEffectLevelValue.setAttribute('style', 'filter: sepia(1)'); 
   }
+  else if (value === 'marvin') {
+    effectImagePreview.classList.remove('effect-heat', 'effect-phobos', 'effect-sepia', 'effect-chrome', 'effect-none');
+    effectImagePreview.classList.add('effect-marvin');
+    uploadEffectLevelValue.setAttribute('style', 'filter: invert(100%)'); 
+  }
+  else if (value === 'phobos') {
+    effectImagePreview.classList.remove('effect-heat', 'effect-marvin', 'effect-sepia', 'effect-chrome', 'effect-none');
+    effectImagePreview.classList.add('effect-phobos');
+    uploadEffectLevelValue.setAttribute('style', 'filter: blur(3, px)');
+  }
+  else if (value === 'heat') {
+    effectImagePreview.classList.remove('effect-phobos', 'effect-marvin', 'effect-sepia', 'effect-chrome', 'effect-none');
+    effectImagePreview.classList.add('effect-heat');
+    uploadEffectLevelValue.setAttribute('style', 'filter: brightness(3)');
+  }
+  else {
+    effectImagePreview.classList.add('effect-none');
+    effectImagePreview.classList.remove('effect-heat', 'effect-phobos', 'effect-marvin', 'effect-sepia', 'effect-chrome');
+    uploadEffectLevelValue.setAttribute('style', 'filter: none');
+  }     
 };
 
 uploadEffectControls.addEventListener('mouseup', uploadLevelPin);
