@@ -158,28 +158,23 @@ var uploadLevelPin = function (evt) {
     effectImagePreview.classList.remove('effect-heat', 'effect-phobos', 'effect-marvin', 'effect-sepia', 'effect-none');
     effectImagePreview.classList.add('effect-chrome');
     uploadEffectLevelValue.setAttribute('style', 'filter: grayscale(1)');
-  }
-  else if (value === 'sepia') {
+  } else if (value === 'sepia') {
     effectImagePreview.classList.remove('effect-heat', 'effect-phobos', 'effect-marvin', 'effect-chrome', 'effect-none');
     effectImagePreview.classList.add('effect-sepia');
     uploadEffectLevelValue.setAttribute('style', 'filter: sepia(1)');
-  }
-  else if (value === 'marvin') {
+  } else if (value === 'marvin') {
     effectImagePreview.classList.remove('effect-heat', 'effect-phobos', 'effect-sepia', 'effect-chrome', 'effect-none');
     effectImagePreview.classList.add('effect-marvin');
     uploadEffectLevelValue.setAttribute('style', 'filter: invert(100%)');
-  }
-  else if (value === 'phobos') {
+  } else if (value === 'phobos') {
     effectImagePreview.classList.remove('effect-heat', 'effect-marvin', 'effect-sepia', 'effect-chrome', 'effect-none');
     effectImagePreview.classList.add('effect-phobos');
     uploadEffectLevelValue.setAttribute('style', 'filter: blur(3, px)');
-  }
-  else if (value === 'heat') {
+  } else if (value === 'heat') {
     effectImagePreview.classList.remove('effect-phobos', 'effect-marvin', 'effect-sepia', 'effect-chrome', 'effect-none');
     effectImagePreview.classList.add('effect-heat');
     uploadEffectLevelValue.setAttribute('style', 'filter: brightness(3)');
-  }
-  else {
+  } else {
     effectImagePreview.classList.add('effect-none');
     effectImagePreview.classList.remove('effect-heat', 'effect-phobos', 'effect-marvin', 'effect-sepia', 'effect-chrome');
     uploadEffectLevelValue.setAttribute('style', 'filter: none');
