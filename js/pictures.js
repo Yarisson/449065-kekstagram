@@ -230,8 +230,8 @@ uploadEffectControls.addEventListener('mouseup', uploadLevelPin);
 uploadFormDescription.addEventListener('focus', focusTextArea);
 uploadFormDescription.addEventListener('blur', blurTextArea);
 uploadFormSubmit.addEventListener('invalid', invalidValidationForm);
-uploadFormSubmit.addEventListener('click', sendInformationForm);
+// uploadFormSubmit.addEventListener('click', sendInformationForm);
 
-sendInformationForm = function () {
-
-};
+// sendInformationForm = function () {
+//
+//  };
