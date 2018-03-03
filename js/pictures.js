@@ -187,7 +187,7 @@ var validateHashTags = function () {
   var hashTags = splitString(hashTagString, hashTagSpace);
   toLowerCase(hashTags, hashtagsLowerCase);
   for (var i = 0; i < hashTags.length; i++) {
-    if (hashTags[i].chrAt(0) !== '#') {
+    if (hashTags[i].charAt(0) !== '#') {
       uploadFormHashtags.setCustomValidity('Отсутствует символ # в начале хэш-тега');
     } else if (hashTags.length > 4) {
       uploadFormHashtags.setCustomValidity('Количество хэш-тегов не может быть больше 5');
@@ -211,14 +211,10 @@ var validateComments = function () {
   }
 };
 
-//  var invalidValidationForm = function () {
-//  validateHashTags();
-//  validateComments();
-//  };
-
-var sendInformationForm = function () {
+var sendInformationForm = function (evt) {
   validateHashTags();
   validateComments();
+  evt.preventDefault();
 };
 
 var init = function () {
@@ -241,4 +237,4 @@ uploadResizeValueDecrease.addEventListener('click', resizeDecrease);
 uploadEffectControls.addEventListener('mouseup', uploadLevelPin);
 uploadFormDescription.addEventListener('focus', focusTextArea);
 uploadFormDescription.addEventListener('blur', blurTextArea);
-uploadFormSubmit.addEventListener('submit', sendInformationForm);
+uploadFormSubmit.addEventListener('click', sendInformationForm);
