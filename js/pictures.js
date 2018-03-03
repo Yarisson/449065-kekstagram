@@ -76,12 +76,8 @@ var uploadResizeControlsValue = document.querySelector('.upload-resize-controls-
 var uploadResizeValueIncrease = document.querySelector('.upload-resize-controls-button-inc');
 var uploadResizeValueDecrease = document.querySelector('.upload-resize-controls-button-dec');
 var effectImagePreview = document.querySelector('.effect-image-preview');
-var uploadFormDescription = document.querySelector('.upload-form-description');
-var uploadFormHashtags = document.querySelector('.upload-form-hashtags');
-var hashTagString = uploadFormHashtags.getAttribute('placeholder');
-var textAreaComments = uploadFormDescription.getAttribute('placeholder');
-var hashTagSpace = ' ';
 var uploadFormSubmit = document.querySelector('.upload-form-submit');
+var uploadFormDescription = document.querySelector('.upload-form-description');
 
 var galleryOverlayClick = function (evt) {
   evt.preventDefault();
@@ -175,22 +171,33 @@ var splitString = function (stringToSplit, separator) {
   return arrayHashTags;
 };
 
-var hashTags = splitString(hashTagString, hashTagSpace);
+var toLowerCase = function (array, lowerArray) {
+  for (var i = 0; i < array.length; i++) {
+    lowerArray[i] = array[i].toLowerCase();
+  }
+  return lowerArray;
+};
 
-var inspectHashTags = function () {
-  var hashTagsLower = hashTags.toLowerCase();
+var validateHashTags = function () {
+  var hashtagsLowerCase = [];
+  toLowerCase(hashTags, hashtagsLowerCase);
+  var uploadFormHashtags = document.querySelector('.upload-form-hashtags');
+  var hashTagString = uploadFormHashtags.getAttribute('placeholder');
+  var hashTagSpace = ' ';
+  var hashTags = splitString(hashTagString, hashTagSpace);
+  toLowerCase(hashTags, hashtagsLowerCase);
   for (var i = 0; i < hashTags.length; i++) {
     if (hashTags[i].chrAt(0) !== '#') {
       uploadFormHashtags.setCustomValidity('Отсутствует символ # в начале хэш-тега');
     } else if (hashTags.length > 4) {
       uploadFormHashtags.setCustomValidity('Количество хэш-тегов не может быть больше 5');
-    } else if (hashTags[i].validity.tooLong) {
+    } else if (hashTags[i].length > 20) {
       uploadFormHashtags.setCustomValidity('Длина одного хэш-тега не должна быть больше символов 20');
     } else {
-      var hashTagsRepeat = hashTagsLower[i];
+      var hashTagsRepeat = hashtagsLowerCase[i];
       var hashTagIndex = i;
       for (var j = hashTagIndex + 1; j < hashTags.length; j++) {
-        if (hashTagsRepeat === hashTagsLower[j]) {
+        if (hashTagsRepeat === hashtagsLowerCase[j]) {
           uploadFormHashtags.setCustomValidity('Нельзя использовать одинаковые хэш-теги');
         }
       }
@@ -198,15 +205,20 @@ var inspectHashTags = function () {
   }
 };
 
-var inspectComments = function () {
+var validateComments = function () {
   if (uploadFormDescription.validity.tooLong) {
     uploadFormDescription.setCustomValidity('Длина комментария не может превышать 140 символов');
   }
 };
 
-var invalidValidationForm = function () {
-  inspectHashTags();
-  inspectComments();
+//  var invalidValidationForm = function () {
+//  validateHashTags();
+//  validateComments();
+//  };
+
+var sendInformationForm = function () {
+  validateHashTags();
+  validateComments();
 };
 
 var init = function () {
@@ -229,9 +241,4 @@ uploadResizeValueDecrease.addEventListener('click', resizeDecrease);
 uploadEffectControls.addEventListener('mouseup', uploadLevelPin);
 uploadFormDescription.addEventListener('focus', focusTextArea);
 uploadFormDescription.addEventListener('blur', blurTextArea);
-uploadFormSubmit.addEventListener('invalid', invalidValidationForm);
-// uploadFormSubmit.addEventListener('click', sendInformationForm);
-
-// sendInformationForm = function () {
-//
-//  };
+uploadFormSubmit.addEventListener('submit', sendInformationForm);
