@@ -166,26 +166,16 @@ var blurTextArea = function () {
   document.addEventListener('keydown', onUploadDialogPress);
 };
 
-var splitString = function (stringToSplit, separator) {
-  var arrayHashTags = stringToSplit.split(separator);
-  return arrayHashTags;
-};
-
-var toLowerCase = function (array, lowerArray) {
-  for (var i = 0; i < array.length; i++) {
-    lowerArray[i] = array[i].toLowerCase();
-  }
-  return lowerArray;
-};
-
 var validateHashTags = function () {
-  var hashtagsLowerCase = [];
-  toLowerCase(hashTags, hashtagsLowerCase);
   var uploadFormHashtags = document.querySelector('.upload-form-hashtags');
-  var hashTagString = uploadFormHashtags.getAttribute('placeholder');
+  var hashTagString = uploadFormHashtags.getAttribute('value');
   var hashTagSpace = ' ';
+  var splitString = function (stringToSplit, separator) {
+    var stringHashTags = stringToSplit.split(separator);
+    var arrayHashTags = stringHashTags.toLowerCase();
+    return arrayHashTags;
+  };
   var hashTags = splitString(hashTagString, hashTagSpace);
-  toLowerCase(hashTags, hashtagsLowerCase);
   for (var i = 0; i < hashTags.length; i++) {
     if (hashTags[i].charAt(0) !== '#') {
       uploadFormHashtags.setCustomValidity('Отсутствует символ # в начале хэш-тега');
@@ -194,10 +184,9 @@ var validateHashTags = function () {
     } else if (hashTags[i].length > 20) {
       uploadFormHashtags.setCustomValidity('Длина одного хэш-тега не должна быть больше символов 20');
     } else {
-      var hashTagsRepeat = hashtagsLowerCase[i];
       var hashTagIndex = i;
       for (var j = hashTagIndex + 1; j < hashTags.length; j++) {
-        if (hashTagsRepeat === hashtagsLowerCase[j]) {
+        if (hashTags[i] === hashTags[j]) {
           uploadFormHashtags.setCustomValidity('Нельзя использовать одинаковые хэш-теги');
         }
       }
