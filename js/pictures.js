@@ -168,26 +168,26 @@ var blurTextArea = function () {
 
 var validateHashTags = function () {
   var uploadFormHashtags = document.querySelector('.upload-form-hashtags');
-  var hashTagString = uploadFormHashtags.getAttribute('value');
-  var hashTagSpace = ' ';
-  var splitString = function (stringToSplit, separator) {
-    var stringHashTags = stringToSplit.split(separator);
-    var arrayHashTags = stringHashTags.toLowerCase();
-    return arrayHashTags;
-  };
-  var hashTags = splitString(hashTagString, hashTagSpace);
-  for (var i = 0; i < hashTags.length; i++) {
-    if (hashTags[i].charAt(0) !== '#') {
-      uploadFormHashtags.setCustomValidity('Отсутствует символ # в начале хэш-тега');
-    } else if (hashTags.length > 4) {
-      uploadFormHashtags.setCustomValidity('Количество хэш-тегов не может быть больше 5');
-    } else if (hashTags[i].length > 20) {
-      uploadFormHashtags.setCustomValidity('Длина одного хэш-тега не должна быть больше символов 20');
-    } else {
-      var hashTagIndex = i;
-      for (var j = hashTagIndex + 1; j < hashTags.length; j++) {
-        if (hashTags[i] === hashTags[j]) {
-          uploadFormHashtags.setCustomValidity('Нельзя использовать одинаковые хэш-теги');
+  var hashTagString = uploadFormHashtags.value;
+  var SEPARATOR = ' ';
+  var hashTagStringLowerCase = hashTagString.toLowerCase();
+  var stringHashTags = hashTagStringLowerCase.split(SEPARATOR);
+  var hashTags = stringHashTags;
+  if (hashTags.length > 4) {
+    uploadFormHashtags.setCustomValidity('Количество хэш-тегов не может быть больше 5');
+  } else {
+    for (var i = 0; i < hashTags.length; i++) {
+      if (hashTags[i].charAt(0) !== '#') {
+        uploadFormHashtags.setCustomValidity('Отсутствует символ # в начале хэш-тега');
+        uploadFormHashtags.style.border = '2px solid red';
+      } else if (hashTags[i].length > 20) {
+        uploadFormHashtags.setCustomValidity('Длина одного хэш-тега не должна быть больше символов 20');
+      } else {
+        var hashTagIndex = i;
+        for (var j = hashTagIndex + 1; j < hashTags.length; j++) {
+          if (hashTags[i] === hashTags[j]) {
+            uploadFormHashtags.setCustomValidity('Нельзя использовать одинаковые хэш-теги');
+          }
         }
       }
     }
